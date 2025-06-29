@@ -18,25 +18,25 @@ function NoteAppBody({ notes, keyword, onDelete, onArchive, onAddNote }) {
     <div className="note-app__body">
       <NoteInput onAddNote={onAddNote} />
       <h2>Catatan Aktif</h2>
-      {activeNotes.length > 0 ? (
+      {activeNotes.length ? 
         <NoteList
           notes={activeNotes}
           onDelete={onDelete}
           onArchive={onArchive}
         />
-      ) : (
+       : 
         <p className="notes-list__empty-message">Tidak ada catatan</p>
-      )}
+      }
       <h2>Arsip</h2>
-      {archivedNotes.length > 0 ? (
+      {archivedNotes.length ? 
         <NoteList
           notes={archivedNotes}
           onDelete={onDelete}
           onArchive={onArchive}
         />
-      ) : (
+       : 
         <p className="notes-list__empty-message">Tidak ada catatan</p>
-      )}
+      }
     </div>
   );
 }

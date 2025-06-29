@@ -5,7 +5,7 @@ import { getInitialData } from "../utils/index";
 
 function NoteApp() {
   const [keyword, setKeyword] = useState("");
-  const [notes, setNotes] = useState(getInitialData());
+  const [notes, setNotes] = useState(getInitialData);
 
   const handleSearch = (keyword) => {
     setKeyword(keyword);
