@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPlus, FaCheck } from 'react-icons/fa6';
+import { FaPlus, FaCheck, FaBoxArchive, FaTrash, FaBoxOpen } from 'react-icons/fa6';
 import PropTypes from 'prop-types';
 
 function AddButton() {
@@ -17,7 +17,7 @@ function AddButton() {
 
 function SaveButton() {
   return (
-    <div className="homepage__action">
+    <div className="add-new-page__action">
       <button
         className="action"
         type="submit"
@@ -30,25 +30,51 @@ function SaveButton() {
   );
 }
 
-function ArchiveButton() {
+function DetailPageButton({ note, onArchive, onUnarchive, onDelete }) {
   return (
-    <div className="homepage__action">
-      <button className="action" type="button" title="Tambah"><FaPlus /></button>
+    <div className="detail-page__action">
+      {note.archived ? (
+        <button
+          className="action"
+          type="button"
+          title="Unarchive Note"
+          onClick={onUnarchive}
+        >
+          <FaBoxOpen />
+        </button>
+      ) : (
+        <button
+          className="action"
+          type="button"
+          title="Archive Note"
+          onClick={onArchive}
+        >
+          <FaBoxArchive />
+        </button>
+      )}
+      <button
+        className="action"
+        type="button"
+        title="Delete Note"
+        onClick={onDelete}
+      >
+        <FaTrash />
+      </button>
     </div>
   );
 }
 
-function DeleteButton() {
-  return (
-    <div className="homepage__action">
-      <button className="action" type="button" title="Tambah"><FaPlus /></button>
-    </div>
-  );
-}
+DetailPageButton.propTypes = {
+  note: PropTypes.shape({
+    archived: PropTypes.bool.isRequired,
+  }).isRequired,
+  onArchive: PropTypes.func.isRequired,
+  onUnarchive: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export {
   AddButton,
   SaveButton,
-  ArchiveButton,
-  DeleteButton,
+  DetailPageButton,
 };

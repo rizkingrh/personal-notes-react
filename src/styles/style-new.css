@@ -269,6 +269,57 @@ main {
   color: var(--on-background);
 }
 
+/* 404 Not Found Page Styles */
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 32px;
+}
+
+.not-found-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.not-found-content h1 {
+  font-size: 120px;
+  font-weight: bold;
+  margin: 0;
+  color: var(--on-background);
+  opacity: 0.3;
+}
+
+.not-found-content h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 16px 0;
+  color: var(--on-background);
+}
+
+.not-found-content p {
+  font-size: 18px;
+  margin: 24px 0 32px;
+  color: var(--on-background);
+  opacity: 0.8;
+}
+
+.back-home-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--on-background);
+  color: var(--background);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.back-home-link:hover {
+  opacity: 0.8;
+}
+
 @media screen and (min-width: 650px) {
   .notes-list {
     grid-template-columns: repeat(2, 1fr);
@@ -288,5 +339,19 @@ main {
 @media screen and (min-width: 1200px) {
   .notes-list {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .not-found-content h1 {
+    font-size: 80px;
+  }
+  
+  .not-found-content h2 {
+    font-size: 24px;
+  }
+  
+  .not-found-content p {
+    font-size: 16px;
   }
 }
