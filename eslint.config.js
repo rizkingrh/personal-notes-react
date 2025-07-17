@@ -45,6 +45,7 @@ export default [
       'indent': ['error', 2],
       'quotes': ['error', 'single'],
       'semi': ['error', 'always'],
+      'no-trailing-spaces': 'warn',
     },
     settings: {
       react: {

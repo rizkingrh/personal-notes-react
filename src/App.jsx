@@ -1,54 +1,25 @@
-import React, { useState } from 'react';
-import NoteAppHeader from './components/NoteAppHeader';
-import NoteAppBody from './components/NoteAppBody';
-import { getAllNotes } from './utils/local-data';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import HomePage from './pages/HomePage';
+import ArchivePage from './pages/ArchivePage';
+import AddNotePage from './pages/AddNotePage';
 
-function NoteApp() {
-  const [keyword, setKeyword] = useState('');
-  const [notes, setNotes] = useState(getAllNotes);
-
-  const handleSearch = (keyword) => {
-    setKeyword(keyword);    
-  };
-
-  const onDeleteHandler = (id) => {
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
-  };
-
-  const onArchiveHandler = (id) => {
-    const newNotes = notes.map((note) => {
-      if (note.id === id) {
-        return { ...note, archived: !note.archived };
-      }
-      return note;
-    });
-    setNotes(newNotes);
-  };
-
-  const onAddNoteHandler = ({ title, body }) => {
-    const newNote = {
-      id: +new Date(),
-      title,
-      body,
-      createdAt: new Date().toISOString(),
-      archived: false,
-    };
-    setNotes([newNote, ...notes]);
-  };
-
+function App() {
   return (
-    <>
-      <NoteAppHeader onSearch={handleSearch} />
-      <NoteAppBody
-        notes={notes}
-        keyword={keyword}
-        onDelete={onDeleteHandler}
-        onArchive={onArchiveHandler}
-        onAddNote={onAddNoteHandler}
-      />
-    </>
+    <div className="app-container">
+      <header>
+        <Navigation />
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/archives" element={<ArchivePage />} />
+          <Route path="/add-note" element={<AddNotePage />} />
+        </Routes>
+      </main>
+    </div>
   );
 }
 
-export default NoteApp;
+export default App;
