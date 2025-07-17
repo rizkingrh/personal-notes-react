@@ -1,6 +1,7 @@
-import React from "react";
-import NoteList from "./NoteList";
-import NoteInput from "./NoteInput";
+import React from 'react';
+import PropTypes from 'prop-types';
+import NoteList from './NoteList';
+import NoteInput from './NoteInput';
 
 function NoteAppBody({ notes, keyword, onDelete, onArchive, onAddNote }) {
   // filter by keyword
@@ -24,7 +25,7 @@ function NoteAppBody({ notes, keyword, onDelete, onArchive, onAddNote }) {
           onDelete={onDelete}
           onArchive={onArchive}
         />
-       : 
+        : 
         <p className="notes-list__empty-message">Tidak ada catatan</p>
       }
       <h2>Arsip</h2>
@@ -34,11 +35,19 @@ function NoteAppBody({ notes, keyword, onDelete, onArchive, onAddNote }) {
           onDelete={onDelete}
           onArchive={onArchive}
         />
-       : 
+        : 
         <p className="notes-list__empty-message">Tidak ada catatan</p>
       }
     </div>
   );
 }
+
+NoteAppBody.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  keyword: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired,
+  onAddNote: PropTypes.func.isRequired,
+};
 
 export default NoteAppBody;

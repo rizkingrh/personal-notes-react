@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function NoteItemAction({ id, archived, onDelete, onArchive }) {
   return (
@@ -10,10 +11,17 @@ function NoteItemAction({ id, archived, onDelete, onArchive }) {
         className="note-item__archive-button"
         onClick={() => onArchive(id)}
       >
-        {archived ? "Pindahkan" : "Arsipkan"}
+        {archived ? 'Pindahkan' : 'Arsipkan'}
       </button>
     </div>
   );
 }
+
+NoteItemAction.propTypes = {
+  id: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired,
+};
 
 export default NoteItemAction;

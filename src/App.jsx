@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import NoteAppHeader from "./NoteAppHeader";
-import NoteAppBody from "./NoteAppBody";
-import { getInitialData } from "../utils/index";
+import React, { useState } from 'react';
+import NoteAppHeader from './components/NoteAppHeader';
+import NoteAppBody from './components/NoteAppBody';
+import { getAllNotes } from './utils/local-data';
 
 function NoteApp() {
-  const [keyword, setKeyword] = useState("");
-  const [notes, setNotes] = useState(getInitialData);
+  const [keyword, setKeyword] = useState('');
+  const [notes, setNotes] = useState(getAllNotes);
 
   const handleSearch = (keyword) => {
-    setKeyword(keyword);
+    setKeyword(keyword);    
   };
 
   const onDeleteHandler = (id) => {

@@ -1,6 +1,7 @@
-import React from "react";
-import NoteItemContent from "./NoteItemContent";
-import NoteItemAction from "./NoteItemAction";
+import React from 'react';
+import PropTypes from 'prop-types';
+import NoteItemContent from './NoteItemContent';
+import NoteItemAction from './NoteItemAction';
 
 function NoteItem({
   id,
@@ -23,5 +24,15 @@ function NoteItem({
     </div>
   );
 }
+
+NoteItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired,
+};
 
 export default NoteItem;

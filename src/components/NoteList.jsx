@@ -1,5 +1,6 @@
-import React from "react";
-import NoteItem from "./NoteItem";
+import React from 'react';
+import PropTypes from 'prop-types';
+import NoteItem from './NoteItem';
 
 function NoteList({ notes, onDelete, onArchive }) {
   return (
@@ -15,5 +16,11 @@ function NoteList({ notes, onDelete, onArchive }) {
     </div>
   );
 }
+
+NoteList.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired,
+};
 
 export default NoteList;

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function NoteInput({ onAddNote }) {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   const maxChar = 50;
 
   const onTitleChange = (e) => {
@@ -25,8 +26,8 @@ function NoteInput({ onAddNote }) {
     });
 
     // Reset input
-    setTitle("");
-    setBody("");
+    setTitle('');
+    setBody('');
   };
 
   return (
@@ -57,5 +58,9 @@ function NoteInput({ onAddNote }) {
     </div>
   );
 }
+
+NoteInput.propTypes = {
+  onAddNote: PropTypes.func.isRequired,
+};
 
 export default NoteInput;
