@@ -1,24 +1,33 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { getArchivedNotes } from '../utils/local-data';
 import SearchBar from '../components/SearchBar';
 import NotesList from '../components/NoteList';
 import NoteListEmpty from '../components/NoteListEmpty';
 import { LocaleContext } from '../contexts/LocaleContext';
+import { NotesContext } from '../contexts/NotesContext';
 
 function ArchivePage() {
   const { locale } = React.useContext(LocaleContext);
+  const { archivedNotes, loading } = React.useContext(NotesContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const keyword = searchParams.get('keyword') || '';
 
   const changeSearchParams = (keyword) => setSearchParams({ keyword });
 
-  const archiveNotes = getArchivedNotes();
-  const notes = keyword
-    ? archiveNotes.filter((note) =>
+  const filteredNotes = keyword
+    ? archivedNotes.filter((note) =>
       note.title.toLowerCase().includes(keyword.toLowerCase())
     )
-    : archiveNotes;
+    : archivedNotes;
+
+  if (loading) {
+    return (
+      <section className="archives-page">
+        <h2>{locale === 'en' ? 'Archived Notes' : 'Catatan yang Diarsipkan'}</h2>
+        <p>{locale === 'en' ? 'Loading...' : 'Memuat...'}</p>
+      </section>
+    );
+  }
 
   return (
     <section className="archives-page">
@@ -28,8 +37,8 @@ function ArchivePage() {
         keywordChange={changeSearchParams}
         locale={locale}
       />
-      {notes.length > 0 ? (
-        <NotesList notes={notes} locale={locale} />
+      {filteredNotes.length > 0 ? (
+        <NotesList notes={filteredNotes} locale={locale} />
       ) : (
         <NoteListEmpty locale={locale} />
       )}

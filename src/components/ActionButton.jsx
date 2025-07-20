@@ -30,7 +30,7 @@ function SaveButton() {
   );
 }
 
-function DetailPageButton({ note, onArchive, onUnarchive, onDelete }) {
+function DetailPageButton({ note, onArchive, onUnarchive, onDelete, isProcessing = false }) {
   return (
     <div className="detail-page__action">
       {note.archived ? (
@@ -39,6 +39,7 @@ function DetailPageButton({ note, onArchive, onUnarchive, onDelete }) {
           type="button"
           title="Unarchive Note"
           onClick={onUnarchive}
+          disabled={isProcessing}
         >
           <FaBoxOpen />
         </button>
@@ -48,6 +49,7 @@ function DetailPageButton({ note, onArchive, onUnarchive, onDelete }) {
           type="button"
           title="Archive Note"
           onClick={onArchive}
+          disabled={isProcessing}
         >
           <FaBoxArchive />
         </button>
@@ -57,6 +59,7 @@ function DetailPageButton({ note, onArchive, onUnarchive, onDelete }) {
         type="button"
         title="Delete Note"
         onClick={onDelete}
+        disabled={isProcessing}
       >
         <FaTrash />
       </button>
@@ -75,6 +78,7 @@ DetailPageButton.propTypes = {
   onArchive: PropTypes.func.isRequired,
   onUnarchive: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool,
 };
 
 export {

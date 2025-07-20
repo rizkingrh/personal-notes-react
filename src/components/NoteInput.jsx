@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function NoteInput({ onAddNote }) {
+function NoteInput({ onAddNote, isLoading = false }) {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    onAddNote({ title, body });
+    if (!isLoading) {
+      onAddNote({ title, body });
+    }
   };
 
   return (
@@ -20,6 +22,7 @@ function NoteInput({ onAddNote }) {
         onChange={(e) => setTitle(e.target.value)}
         required
         name="title"
+        disabled={isLoading}
       />
       <textarea
         className="add-new-page__input__body"
@@ -29,6 +32,7 @@ function NoteInput({ onAddNote }) {
         required
         rows={10}
         name="body"
+        disabled={isLoading}
       />
     </form>
   );
@@ -36,6 +40,7 @@ function NoteInput({ onAddNote }) {
 
 NoteInput.propTypes = {
   onAddNote: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
 };
 
 export default NoteInput;

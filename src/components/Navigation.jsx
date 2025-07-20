@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { LocaleContext } from '../contexts/LocaleContext';
 import { ThemeContext } from '../contexts/ThemeContext';
-import { BsTranslate, BsSun, BsMoon } from 'react-icons/bs';
+import { BsTranslate, BsSun, BsMoon, BsBoxArrowRight } from 'react-icons/bs';
 
-function Navigation() {
+function Navigation({ logout, name }) {
   const { locale, toggleLocale } = React.useContext(LocaleContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
 
@@ -30,10 +31,22 @@ function Navigation() {
           >
             {theme === 'light' ? <BsMoon /> : <BsSun />}
           </button>
+          <button
+            onClick={logout}
+            className="toggle-button"
+            title={locale === 'en' ? 'Logout' : 'Keluar'}
+          >
+            <BsBoxArrowRight />  <p style={{ margin: '4px' }}>{name}</p>
+          </button>
         </div>
       </nav>
     </>
   );
 }
+
+Navigation.propTypes = {
+  logout: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default Navigation;
