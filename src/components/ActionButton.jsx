@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { FaPlus, FaCheck, FaBoxArchive, FaTrash, FaBoxOpen } from 'react-icons/fa6';
 import PropTypes from 'prop-types';
 
-function AddButton() {
+function AddButton({ locale }) {
   return (
     <div className="homepage__action">
-      <Link to="/add-note" title="Add Note">
+      <Link to="/add-note" title={locale === 'en' ? 'Add Note' : 'Tambah Catatan'}>
         <button className="action" type="button">
           <FaPlus />
         </button>
@@ -63,6 +63,10 @@ function DetailPageButton({ note, onArchive, onUnarchive, onDelete }) {
     </div>
   );
 }
+
+AddButton.propTypes = {
+  locale: PropTypes.string.isRequired,
+};
 
 DetailPageButton.propTypes = {
   note: PropTypes.shape({

@@ -44,7 +44,7 @@ body {
 header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 16px;
   border-bottom: 1px solid var(--on-background);
 }
@@ -53,10 +53,46 @@ header h1 {
   flex: 1;
 }
 
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 header .navigation ul li {
   display: inline-block;
   font-size: 24px;
   margin: 0 8px;
+}
+
+.navigation-toggles {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.toggle-button {
+  background: transparent;
+  color: var(--on-background);
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-button:hover {
+  background: var(--on-background);
+  color: var(--background);
+  transform: translateY(-1px);
+}
+
+.toggle-button:active {
+  transform: translateY(0);
 }
 
 main {

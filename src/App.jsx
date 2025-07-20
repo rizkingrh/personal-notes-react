@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { LocaleProvider } from './contexts/LocaleContext';
+import { ThemeProvider, ThemeContext } from './contexts/ThemeContext';
 import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
 import ArchivePage from './pages/ArchivePage';
@@ -7,9 +9,11 @@ import AddNotePage from './pages/AddNotePage';
 import DetailNotePage from './pages/DetailNotePage';
 import NotFoundPage from './pages/NotFoundPage';
 
-function App() {
+function AppContent() {
+  const { theme } = React.useContext(ThemeContext);
+
   return (
-    <div className="app-container">
+    <div className="app-container" data-theme={theme}>
       <header>
         <Navigation />
       </header>
@@ -23,6 +27,16 @@ function App() {
         </Routes>
       </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <LocaleProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </LocaleProvider>
   );
 }
 

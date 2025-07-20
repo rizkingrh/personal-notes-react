@@ -4,8 +4,10 @@ import { getArchivedNotes } from '../utils/local-data';
 import SearchBar from '../components/SearchBar';
 import NotesList from '../components/NoteList';
 import NoteListEmpty from '../components/NoteListEmpty';
+import { LocaleContext } from '../contexts/LocaleContext';
 
 function ArchivePage() {
+  const { locale } = React.useContext(LocaleContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const keyword = searchParams.get('keyword') || '';
 
@@ -20,9 +22,17 @@ function ArchivePage() {
 
   return (
     <section className="archives-page">
-      <h2>Archived Notes</h2>
-      <SearchBar keyword={keyword} keywordChange={changeSearchParams} />
-      {notes.length > 0 ? <NotesList notes={notes} /> : <NoteListEmpty />}
+      <h2>{locale === 'en' ? 'Archived Notes' : 'Catatan yang Diarsipkan'}</h2>
+      <SearchBar
+        keyword={keyword}
+        keywordChange={changeSearchParams}
+        locale={locale}
+      />
+      {notes.length > 0 ? (
+        <NotesList notes={notes} locale={locale} />
+      ) : (
+        <NoteListEmpty locale={locale} />
+      )}
     </section>
   );
 }
